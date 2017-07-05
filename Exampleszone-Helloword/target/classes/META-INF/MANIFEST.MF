@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Exampleszone-Helloword
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: sakshi
+Implementation-Vendor-Id: ExamplesZone
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/Exampleszone
+ -Helloword/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
