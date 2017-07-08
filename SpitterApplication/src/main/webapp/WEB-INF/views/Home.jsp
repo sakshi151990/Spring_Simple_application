@@ -10,7 +10,7 @@
 
 <h1>Welcome to Spitter</h1>
 <a href="/spittles" >Spittles</a> |
-<a href="<c:url value="/spitter/register" />">Register</a>
+<a href="/spitter/register" >Register</a>
 
 </body>
 </html>
