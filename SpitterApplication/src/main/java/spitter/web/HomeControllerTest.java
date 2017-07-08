@@ -1,10 +1,14 @@
 package spitter.web;
 
 import static org.hamcrest.CoreMatchers.hasItems;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
@@ -17,8 +21,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceView;
 
+import spitter.data.Spitter;
 import spitter.data.Spittle;
 import spitter.data.SpittleRepository;
+import spitter.data.spitterRepository;
 
 public class HomeControllerTest {
 
@@ -87,4 +93,33 @@ public class HomeControllerTest {
 	.andExpect(model().attributeExists("spittle"))
 	.andExpect(model().attribute("spittle", expectedSpittle));
 	}
+	
+	@Test
+	public void shouldShowRegistration() throws Exception {
+		spitterRepository mockRepository = mock(spitterRepository.class);
+		SpitterController controller = new SpitterController(mockRepository);
+	MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+	mockMvc.perform(get("/spitter/register"))
+	.andExpect(view().name("registerForm"));
+	}
+	
+	@Test
+	public void shouldProcessRegistration() throws Exception {
+	spitterRepository mockRepository =mock(spitterRepository.class);
+	Spitter unsaved =	new Spitter("jbauer", "24hours", "Jack", "Bauer");
+	Spitter saved =
+	new Spitter(24L, "jbauer", "24hours", "Jack", "Bauer");
+	when(mockRepository.save(unsaved)).thenReturn(saved);
+	SpitterController controller =
+	new SpitterController((spitterRepository) mockRepository);
+	MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+	mockMvc.perform(post("/spitter/register")
+	.param("firstName", "Jack")
+	.param("lastName", "Bauer")
+	.param("username", "jbauer")
+	.param("password", "24hours"))
+	.andExpect(redirectedUrl("/spitter/jbauer"));
+	verify(mockRepository, atLeastOnce()).save(unsaved);
+	}
+	
 }

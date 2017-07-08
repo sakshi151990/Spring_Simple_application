@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import spitter.data.SpittleRepository;
 import spitter.data.SpittleRepositoryIML;
+import spitter.data.spitterRepository;
+import spitter.data.spitterRepositoryIML;
 
 @Configuration
 @EnableWebMvc
@@ -19,5 +21,11 @@ public class RootConfig {
 	public SpittleRepository spittleRepository()
 	{
 		return new SpittleRepositoryIML();
+	}
+	
+	@Bean
+	public spitterRepository spitterRepository()
+	{
+		return new spitterRepositoryIML();
 	}
 }
