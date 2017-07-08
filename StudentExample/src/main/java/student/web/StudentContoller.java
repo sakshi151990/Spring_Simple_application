@@ -1,8 +1,11 @@
 package student.web;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,10 +40,11 @@ public class StudentContoller {
 	}*/
 	
 	@RequestMapping(value="/" , method=RequestMethod.POST)
-	public String Studentresgister(@RequestParam("name") String name, @RequestParam("rollno") int rollno)
-	{
-		student.setName(name);
-		student.setRollno(rollno);
+	public String Studentresgister(@Valid Student student,Errors error)
+	{ if(error.hasErrors()){
+		return "student";
+	}else
+		this.student=student;
 		
 		return "redirect:/"  + student.getName(); 
 		
