@@ -9,13 +9,14 @@
 </head>
 <body>
 
-<p>List of Student</p>
-
-<p>Name:
-<c:out value="${name}" /></p>
+<p>Registeration</p>
+<form method="POST">
+Name:
+<input type="text" name="name" /></br>
 Rollno:
-<c:out value="${rollno}" />
+<input type="text" name="rollno" />
 
-
+ <input type="submit" value="Register" />
+</form>
 </body>
 </html>
