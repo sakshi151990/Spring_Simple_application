@@ -26,7 +26,8 @@ public class SpitterController {
 	}
 	
 	@RequestMapping(value="/spitter/register", method=RequestMethod.GET)
-	public String showRegistrationForm() {
+	public String showRegistrationForm(Model model) {
+		model.addAttribute(new Spitter());
 	return "registerForm";
 	}
 	
@@ -45,14 +46,15 @@ public class SpitterController {
 	}*/
 	
 	@RequestMapping(value="/spitter/register", method=RequestMethod.POST)
-	public String processRegistration(	@Valid Spitter spitter,
-	Errors errors) {
-	if (errors.hasErrors()) {
-	return "registerForm";
-	}
+	public String processRegistration(@Valid Spitter spitter,Errors error) {
+	if(error.hasErrors())
+	{
+		return "registerForm";
+	}else
+	{
 	spitterrepository.save(spitter);
 	return "redirect:/spitter/" + spitter.getUsername();
-	}
+	}}
 
 	@RequestMapping(value="/spitter/{username}", method=RequestMethod.GET)
 

@@ -3,12 +3,13 @@ package spitter.data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.context.annotation.PropertySource;
+
+//@PropertySource("classpath:ErrorValidation.properties")
 public class Spitter {
 	
 	public Spitter() {
-		
-		
-		
+			
 	}
 	 
 	
@@ -17,6 +18,7 @@ public class Spitter {
 	@NotNull
 	@Size(min=5, max=16)
 	private String username;
+	
 	private String password;
 	public Spitter(Long id, String username, String password, String firstName, String lastName) {
 		super();
@@ -26,7 +28,13 @@ public class Spitter {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	@NotNull
+	@Size(min=5, max=16)
 	private String firstName;
+	
+	@NotNull
+	@Size(min=5, max=16)
 	private String lastName;
 	public Long getId() {
 		return id;

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,8 +11,9 @@
 <body>
 
 <h1>Welcome to Spitter</h1>
-<a href="/spittles" >Spittles</a> |
-<a href="/spitter/register" >Register</a>
+
+<s:url value="/spittles" var="spittlesURL" /><a href="${spittlesURL}" >Spittles</a>
+<s:url value="/spitter/register" var="spitterregisterURL"></s:url><a href="${spitterregisterURL}" >Register</a>
 
 </body>
 </html>
