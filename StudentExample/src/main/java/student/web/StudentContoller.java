@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,11 @@ import student.data.Student;
 
 @Controller
 public class StudentContoller {
-	@Autowired
-	private Student student;
+
 
 	@RequestMapping(value="/" , method=RequestMethod.GET)
-	public String StudentHome()
-	{
+	public String StudentHome(Model model)
+	{ model.addAttribute(new Student());
 		return  "student";
 	}
 	
@@ -44,7 +44,7 @@ public class StudentContoller {
 	{ if(error.hasErrors()){
 		return "student";
 	}else
-		this.student=student;
+		
 		
 		return "redirect:/"  + student.getName(); 
 		
@@ -52,10 +52,10 @@ public class StudentContoller {
 	
 	
 	@RequestMapping(value="/{name}" , method=RequestMethod.GET)
-	public String Studentprofile(Model model)
+	public String Studentprofile(@PathVariable("name") String name ,Model model)
 	{
-		model.addAttribute("name", student.getName());
-		model.addAttribute("rollno", student.getRollno());
-		return "Profile";
+		model.addAttribute("name", name);
+		
+		return "Home";
 	}
 }

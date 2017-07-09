@@ -2,6 +2,7 @@
 <html>
 
 <body>
-<h1> Welcome to Home page</h1>
+<h1> Welcome to Home page ${name}</h1>
+
 </body>
 </html>
