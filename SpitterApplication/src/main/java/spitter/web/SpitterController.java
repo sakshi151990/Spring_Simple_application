@@ -1,5 +1,7 @@
 package spitter.web;
 
+import java.util.DuplicateFormatFlagsException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 
 import spitter.data.Spitter;
 import spitter.data.spitterRepository;
+import spitter.exceptions.duplicateSpitterExecption;
+import spitter.exceptions.spitterNotFoundException;
 
 @Controller
 public class SpitterController {
@@ -28,6 +32,7 @@ public class SpitterController {
 	@RequestMapping(value="/spitter/register", method=RequestMethod.GET)
 	public String showRegistrationForm(Model model) {
 		model.addAttribute(new Spitter());
+		
 	return "registerForm";
 	}
 	
@@ -46,23 +51,29 @@ public class SpitterController {
 	}*/
 	
 	@RequestMapping(value="/spitter/register", method=RequestMethod.POST)
-	public String processRegistration(@RequestPart("profilepicture") byte[] profilepicture,@Valid Spitter spitter,Errors error) {
+	public String processRegistration(@RequestPart("profilepicture") byte[] profilepicture,@Valid Spitter spitter,Errors error,Model model) {
 	if(error.hasErrors())
-	{
+	{  
 		return "registerForm";
+		
 	}else
 	{
 	spitterrepository.save(spitter);
-	return "redirect:/spitter/" + spitter.getUsername();
-	}}
-
+	
+	
+	}
+	model.addAttribute("username", spitter.getUsername());
+	
+	return "redirect:/spitter/{username}";
+	}
 	@RequestMapping(value="/spitter/{username}", method=RequestMethod.GET)
 
 	public String showSpitterProfile(
 	@PathVariable String username, Model model) {
 	Spitter spitter = spitterRepository.findByUsername(username);
+	
 	model.addAttribute(spitter);
-	return "Profile";
+return "Profile";
 	}
 	
 }
