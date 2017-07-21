@@ -2,8 +2,14 @@ package spitter.data;
 
 public class spitterRepositoryIML implements spitterRepository {
 	@Override
-	public Spitter save(Spitter unsaved) {
+	public void save(Spitter unsaved) {
 		// TODO Auto-generated method stub
-		return unsaved;
+		
+	}
+
+	@Override
+	public Spitter findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -70,7 +70,7 @@ public class SpitterController {
 
 	public String showSpitterProfile(
 	@PathVariable String username, Model model) {
-	Spitter spitter = spitterRepository.findByUsername(username);
+	Spitter spitter = spitterrepository.findByUsername(username);
 	
 	model.addAttribute(spitter);
 return "Profile";
