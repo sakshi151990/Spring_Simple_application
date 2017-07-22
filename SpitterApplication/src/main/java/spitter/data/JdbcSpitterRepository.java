@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Primary
+
 public class JdbcSpitterRepository implements spitterRepository {
 
 	
