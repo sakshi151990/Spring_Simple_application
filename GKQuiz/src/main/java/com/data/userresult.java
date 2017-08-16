@@ -16,13 +16,13 @@ import javax.persistence.Table;
 public class userresult {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="RESULTID")
 	private int resultid;
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="userid")
+	@JoinColumn(name="NAME")
 	private User user;
 	
 	@Column(name="USERESULT")

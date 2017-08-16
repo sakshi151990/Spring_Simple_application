@@ -8,4 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface questionRepository {
 public List<Questions> getQuestionAnswer();
+
+public void  saveQuestionAnswer(Questions questions);
 }

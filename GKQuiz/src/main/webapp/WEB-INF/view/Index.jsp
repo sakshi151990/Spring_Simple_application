@@ -62,6 +62,7 @@ border-radius: 20px;
 
 <h2 style="color: white;font-family: fantasy;background-color: black;">Welcome to the Online Quiz Application</h2>
 <br>
+
 <div class="main" >
 
 <label style="color: black;font-family: sans-serif;font-style: oblique;">Already a user ?</label>&nbsp;&nbsp;&nbsp;
@@ -72,13 +73,17 @@ border-radius: 20px;
 
 </div>
 <br><br><div class="login">
-	<form:form method="POST" commandName="user" action="login.html">
+	<form:form method="POST" commandName="user" action="/login">
 
-        <form:label path="userid">User ID:</form:label>
-        <form:input path="userid" />
+       
         <br>
     <form:label path="name">Name :</form:label>
-        <form:input path="name" />
+        <form:input path="name" /></br>
+        
+         <form:label path="password">Password :</form:label>
+        <form:input path="password" />
+       
+        
     <br><br>
       
             <input style="font-size:20px; 
@@ -95,15 +100,21 @@ border-radius: 20px;
 <div class="register" >
 <form:form method="POST" commandName="user" action="register.html">
 <h4>Create a new account:</h4>
-        <form:label path="userid">User ID:</form:label>
-        <form:input path="userid" />
+      
         <br>
-    <form:label path="name">Name :</form:label>
+    <form:label path="name">Username :</form:label>
         <form:input path="name" />
     <br>
          <form:label path="email">Email :</form:label>
         <form:input path="email" />
     <br>
+      
+         <form:label path="password">Password :</form:label>
+        <form:input path="password" />
+        <br>
+        <form:label path="fullName">Full Name :</form:label>
+        <form:input path="fullName" />
+    <br><br>
             <input style="background: black;font-family: cursive;font-size: 16px; width: 107px ;color: white;" type="submit" value="Register"/>
     
 </form:form>

@@ -34,5 +34,13 @@ public class questionRepositoryIML implements questionRepository{
 		
 		return list;
 	}
+	@Override
+	public void saveQuestionAnswer(Questions questions) {
+		session=currentSession();
+		session.beginTransaction();
+		session.save(questions);
+		session.getTransaction().commit();
+		
+	}
 
 }
