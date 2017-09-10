@@ -4,9 +4,12 @@ import java.util.Date;
 
 public class Spittle {
 
-	private final Long id;
-	private final String message;
-	private final Date time;
+	public Spittle() {
+		super();
+	}
+	private Long id;
+	private  String message;
+	private  Date time;
 	private Double latitude;
 	public Double getLatitude() {
 		return latitude;
@@ -43,6 +46,14 @@ public class Spittle {
 			this.longitude = longitude;
 			this.latitude = latitude;
 			}
+	public Spittle(Long id, String message, Date time, Double latitude, Double longitude) {
+		super();
+		this.id = id;
+		this.message = message;
+		this.time = time;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
 	
 	
 }

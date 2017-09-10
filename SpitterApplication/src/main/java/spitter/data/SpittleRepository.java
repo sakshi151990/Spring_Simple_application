@@ -8,6 +8,8 @@ public interface SpittleRepository {
 
 	Object findOne(long spittleid);
 
+	Spittle save(Spittle spittle);
+
 	
 	
 	

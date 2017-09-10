@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import spitter.data.Spittle;
 import spitter.data.SpittleRepository;
@@ -26,9 +28,18 @@ public class SpitterApiContorller {
 	private static final String MAX_LONG_AS_STRING="9223372036854775807";
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Spittle>  spittles(@RequestParam(value= "max" , defaultValue= MAX_LONG_AS_STRING) long max,@RequestParam(value="count", defaultValue="20") int count)
+	public @ResponseBody List<Spittle>  spittles(@RequestParam(value= "max" , defaultValue= MAX_LONG_AS_STRING) long max,@RequestParam(value="count", defaultValue="20") int count)
 	{
 		return spittlerepo.findSpittles(max, count);
+		
+	}
+	
+	@RequestMapping(
+			method=RequestMethod.POST,
+			consumes="application/json")
+	public @ResponseBody  Spittle savespittle(@RequestBody Spittle spittle){
+		Spittle spittle1 = spittlerepo.save(spittle);
+		return spittle1;
 		
 	}
 }

@@ -16,10 +16,10 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter 	{
 	 auth.inMemoryAuthentication().withUser("user").password("password").roles("USER").and().withUser("ADMIN").password("password").roles("USER","ADMIN");
  }
  protected void configure(HttpSecurity http) throws Exception {
- http
+ http.csrf().disable()
  .authorizeRequests()
  .antMatchers("/spitter/me").hasRole("SPITTER")
- .antMatchers(HttpMethod.POST, "/spittles").hasRole("SPITTER")
+ .antMatchers("/spittlesui/").permitAll()
  .anyRequest().permitAll().and()
  .requiresChannel()
  .antMatchers("/spitter/form").requiresSecure().and().formLogin().loginPage("/login.html");

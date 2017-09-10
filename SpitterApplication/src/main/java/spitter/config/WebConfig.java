@@ -56,7 +56,7 @@ public class WebConfig extends WebMvcConfigurerAdapter  {
 	return new TilesViewResolver();
 	}
 	
-	@Bean
+	/*	@Bean
 	public ViewResolver cnViewResolver(ContentNegotiationManager cmm) {
 		
 		ContentNegotiatingViewResolver cnv= new ContentNegotiatingViewResolver();
@@ -66,7 +66,7 @@ public class WebConfig extends WebMvcConfigurerAdapter  {
 	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer config)
-	{
+	{  System.out.println("inside configurer");
 		config.defaultContentType(MediaType.APPLICATION_JSON);
 	}
 	
@@ -82,4 +82,7 @@ public class WebConfig extends WebMvcConfigurerAdapter  {
 	return new MappingJackson2JsonView();
 		
 
-}}
+}
+*/
+
+}
