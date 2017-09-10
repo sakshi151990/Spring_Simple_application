@@ -20,10 +20,12 @@ public class SpittleRepositoryIML implements SpittleRepository {
 
 	@Override
 	public Spittle findOne(long spittleid) {
-
-		
-		
-		return new Spittle("Hello", new Date());
+System.out.println("indside findone");
+if(spittleid == 1 )
+{	 Spittle spittle = new Spittle(1L, "message", new Date(), 3.0, 4.0);
+return spittle;}
+else
+	return null;
 	}
 
 	@Override

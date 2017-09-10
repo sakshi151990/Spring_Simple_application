@@ -3,13 +3,19 @@ package spitter.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import spitter.exceptions.Error;
+import spitter.exceptions.spitterNotFoundException;
+import spitter.data.Spitter;
 import spitter.data.Spittle;
 import spitter.data.SpittleRepository;
 
@@ -40,6 +46,49 @@ public class SpitterApiContorller {
 	public @ResponseBody  Spittle savespittle(@RequestBody Spittle spittle){
 		Spittle spittle1 = spittlerepo.save(spittle);
 		return spittle1;
+		
+	}
+	
+	@RequestMapping(
+			value="{id}",
+			method=RequestMethod.GET)
+	
+	/*public ResponseEntity<?> finspitter(@PathVariable("id") long id)
+	{
+		System.out.println();
+		Spittle spittle =spittlerepo.findOne(id);
+		if(spittle == null){
+			Error  error =new Error(4,"not found");
+		
+		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+	}
+	else
+		
+		return new ResponseEntity<Spittle>(spittle, HttpStatus.OK);
+	}*/
+	
+	
+			public ResponseEntity<?> finspitter(@PathVariable("id") long id)
+			{
+		Spittle spittle =spittlerepo.findOne(id);
+		if(spittle == null){
+			throw new spitterNotFoundException();
+			
+		
+		
+	}
+	else
+		
+		return new ResponseEntity<Spittle>(spittle, HttpStatus.OK);
+		
+			}
+	
+	@ExceptionHandler(spitterNotFoundException.class)
+	public ResponseEntity<?> notfound()
+	{ 
+		return new ResponseEntity<Error>(new  Error(4, "Spittle  not found"), HttpStatus.OK);
+		
+		
 		
 	}
 }
