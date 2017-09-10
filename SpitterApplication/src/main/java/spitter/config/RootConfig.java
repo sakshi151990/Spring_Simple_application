@@ -12,9 +12,9 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
+
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import spitter.data.HibernateSpitterRepository;
